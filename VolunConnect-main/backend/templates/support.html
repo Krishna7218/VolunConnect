@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support - VolunConnect</title>
+    
+    <style>
+        /* Base Reset & Smooth Scroll */
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        html { scroll-behavior: smooth; }
+        body { background: #f4f6f9; color: #333; display: flex; flex-direction: column; min-height: 100vh; }
+        
+        /* Navbar CSS */
+        .navbar { background-color: #ffffff; box-shadow: 0 2px 10px rgba(0,0,0,0.05); padding: 12px 0; width: 100%; position: relative; z-index: 1000;}
+        .nav-container { max-width: 1400px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; }
+        .logo-section { display: flex; align-items: center; gap: 15px; }
+        .logo-box { background-color: #1a56db; color: white; padding: 10px 18px; border-radius: 6px; font-weight: bold; font-size: 18px; }
+        .nav-motto { color: #666; font-style: italic; font-size: 14px; }
+        .nav-links { display: flex; align-items: center; gap: 25px; }
+        .nav-links > a { text-decoration: none; color: #222; font-weight: 600; font-size: 15px; transition: 0.2s; }
+        .nav-links > a:hover { color: #1a56db; }
+        
+        /* Dropdown CSS */
+        .account-dropdown-container { position: relative; display: inline-block; }
+        .account-btn { background: white; border: 2px solid #1a56db; color: #1a56db; padding: 8px 20px; border-radius: 25px; font-weight: bold; cursor: pointer; font-size: 15px; transition: 0.3s; }
+        .account-btn:hover { background: #f0f4ff; }
+        .dropdown-menu { display: none; position: absolute; top: 120%; right: 0; background-color: white; min-width: 220px; box-shadow: 0px 10px 25px rgba(0,0,0,0.1); border-radius: 12px; overflow: hidden; z-index: 1000; border: 1px solid #eaeaea; }
+        .dropdown-menu.show { display: block; }
+        .dropdown-header { padding: 15px; background: #f9fbfd; }
+        .user-email { font-weight: bold; color: #1a1a1a; font-size: 14px; word-break: break-all; }
+        .dropdown-menu hr { margin: 0; border: none; border-top: 1px solid #eaeaea; }
+        .logout-link { display: block; padding: 12px 15px; color: #d32f2f; text-decoration: none; font-weight: bold; transition: 0.2s;}
+        .logout-link:hover { background-color: #ffeaea; }
+
+        /* =========================================
+           🌟 SUPPORT SECTION CSS
+           ========================================= */
+        .support-section {
+            padding: 60px 20px;
+            flex: 1;
+        }
+        .support-header { text-align: center; margin-bottom: 50px; }
+        .support-header h2 { font-size: 36px; color: #1a1a1a; margin-bottom: 15px; font-weight: 800; }
+        .support-header p { color: #666; font-size: 16px; max-width: 600px; margin: 0 auto; line-height: 1.6; }
+        
+        .support-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+            overflow: hidden;
+            border: 1px solid #eaeaea;
+        }
+
+        .support-info-box { background: #f8faff; padding: 40px; border-right: 1px solid #eaeaea; }
+        .info-item { display: flex; align-items: center; gap: 15px; margin-bottom: 25px; }
+        .info-icon { font-size: 24px; background: #e8f0fe; padding: 12px; border-radius: 12px; color: #1a56db; }
+        .info-text h4 { margin: 0 0 5px; font-size: 16px; color: #333; }
+        .info-text p { margin: 0; color: #666; font-size: 14px; font-weight: 500; }
+        
+        .faq-box { margin-top: 40px; }
+        .faq-box h4 { margin-bottom: 15px; color: #333; font-size: 18px; }
+        .faq-item { margin-bottom: 10px; border-bottom: 1px solid #ddd; padding-bottom: 10px; }
+        .faq-item summary { font-weight: 600; color: #1a56db; cursor: pointer; outline: none; font-size: 14px; }
+        .faq-item p { margin-top: 10px; font-size: 13px; color: #666; line-height: 1.5; }
+
+        .support-form-box { padding: 40px; }
+        .support-form-box h3 { margin-bottom: 20px; font-size: 24px; color: #333; }
+        .support-input { width: 100%; padding: 14px; margin-bottom: 15px; border: 1.5px solid #e1e5ee; border-radius: 10px; font-size: 14px; font-family: inherit; transition: 0.3s; background: #fafbfc; box-sizing: border-box; }
+        .support-input:focus { border-color: #1a56db; background: #fff; outline: none; box-shadow: 0 0 0 4px rgba(26,86,219,0.1); }
+        .support-btn { background: #1a56db; color: white; border: none; padding: 14px; width: 100%; border-radius: 10px; font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .support-btn:hover { background: #1545b3; transform: translateY(-2px); }
+
+        @media (max-width: 768px) {
+            .support-grid { grid-template-columns: 1fr; }
+            .support-info-box { border-right: none; border-bottom: 1px solid #eaeaea; }
+        }
+        .logo-section {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        }
+          .site-logo {
+                height: 40px; /* Isko apne hisaab se bada ya chota kar lena (jaise 50px ya 35px) */
+                width: auto;
+                display: block;
+                border-radius: 8px; /* Agar logo ke corners gol karne hain */
+            }   
+        /* Footer */
+        footer { background-color: #0b1120; color: #ffffff; padding: 30px 20px; text-align: center; margin-top: auto; }
+        footer h3 { margin-bottom: 15px; font-size: 18px; }
+        footer ul { list-style: none; display: flex; justify-content: center; gap: 25px; }
+        footer ul li a { color: #8a96ab; text-decoration: none; font-size: 14px; }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="logo-section">
+                 <div class="logo-section">
+                <img src="/static/logo1.png" alt="VolunConnect Logo" class="site-logo">
+            </div>
+                <span class="nav-motto">Connecting Hearts, Serving Communities</span>
+            </div>
+            <nav class="nav-links">
+                <a href="/" style="display: flex; align-items: center; gap: 5px;">🏠 Home</a>
+                <a href="/filter" style="display: flex; align-items: center; gap: 5px;">📍 Live Radar</a>
+                
+                <div style="width: 2px; height: 25px; background-color: #eaeaea; margin: 0 10px;"></div>
+                
+                {% if user_email and user_email != 'Guest' %}
+                    <div class="account-dropdown-container">
+                        <button class="account-btn" onclick="toggleDropdown(event)">
+                            👤 My Account
+                        </button>
+                        <div class="dropdown-menu" id="accountDropdown">
+                            <div class="dropdown-header">
+                                <span style="font-size: 12px; color: #666;">Logged in as:</span><br>
+                                <span class="user-email">{{ user_email }}</span> 
+                            </div>
+                            <hr>
+                            <a href="/logout" class="logout-link">🚪 Logout</a>
+                        </div>
+                    </div>
+                {% else %}
+                    <a href="/signup" class="login-signup-btn" style="background: #1a56db; color: white; padding: 10px 22px; border-radius: 25px; text-decoration: none; font-weight: bold; transition: 0.3s; box-shadow: 0 4px 10px rgba(26,86,219,0.2);">🚀 Sign Up Free</a>
+                {% endif %}
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="support-section">
+            <div class="support-header">
+                <h2>Priority Support</h2>
+                <p>Facing issues? Need to verify your NGO? Or just want to say hi? Drop us a message and our dispatch team will get back to you.</p>
+            </div>
+
+            <div class="support-grid">
+                <div class="support-info-box">
+                    <div class="info-item">
+                        <div class="info-icon">📍</div>
+                        <div class="info-text">
+                            <h4>Command Headquarters</h4>
+                            <p>Haridwar, Uttarakhand, India</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">✉️</div>
+                        <div class="info-text">
+                            <h4>Email Us Directly</h4>
+                            <p>arkadyutidutta2007@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">📞</div>
+                        <div class="info-text">
+                            <h4>Emergency Hotline</h4>
+                            <p>8509812762</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-box">
+                        <h4>Quick FAQs</h4>
+                        <details class="faq-item">
+                            <summary>Is this platform free for NGOs?</summary>
+                            <p>Yes, VolunConnect is 100% free for registered NGOs and individual volunteers.</p>
+                        </details>
+                        <details class="faq-item">
+                            <summary>How does the AI Dispatcher work?</summary>
+                            <p>It reads your distress prompt, analyzes required skills using NLP, and matches it with the nearest verified volunteers using the Haversine formula.</p>
+                        </details>
+                    </div>
+                </div>
+
+                <div class="support-form-box">
+                    <h3>Send a Message</h3>
+                    
+                    {% if success_msg %}
+                    <div style="background-color: #d1fae5; color: #047857; padding: 15px; border-radius: 10px; margin-bottom: 20px; text-align: center; border: 1px solid #a7f3d0; font-weight: bold; font-size: 15px;">
+                        {{ success_msg }}
+                    </div>
+                    {% endif %}
+
+                    <form action="/support" method="POST">
+                        <input type="text" name="fullname" class="support-input" placeholder="Your Full Name" required>
+                        <input type="email" name="email" class="support-input" placeholder="Your Email Address" required>
+                        <select name="issue" class="support-input" required style="color: #555;">
+                            <option value="" disabled selected>Select an Issue...</option>
+                            <option value="ngo_verify">NGO Verification</option>
+                            <option value="bug_report">Report a Bug / Issue</option>
+                            <option value="partnership">Partnership Inquiry</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <textarea name="message" class="support-input" rows="4" placeholder="Describe your issue in detail..." required style="resize: vertical;"></textarea>
+                        <button type="submit" class="support-btn">Send Secure Message 🚀</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <h3>VolunConnect</h3>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="https://www.termsfeed.com/live/c508360c-e3ed-403e-afcd-624432f0bf7d">Privacy Policy</a></li>
+                <li><a href="https://www.termsfeed.com/live/c031a24b-f3fa-43a3-af06-bc4aace1ef97">Terms & Condition</a></li>
+            </ul>
+            
+            <p style="margin-top: 25px; font-size: 13px; color: #8a96ab; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px;">
+                &copy; 2026 VolunConnect. All rights reserved. <br>
+                Built with Algo Avengers Team.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleDropdown(event) {
+            event.stopPropagation();
+            document.getElementById("accountDropdown").classList.toggle("show");
+        }
+
+        window.onclick = function(event) {
+            if (!event.target.closest('.account-dropdown-container')) {
+                var dropdowns = document.getElementsByClassName("dropdown-menu");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>
