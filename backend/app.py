@@ -4,7 +4,7 @@ import re
 import math
 import mysql.connector
 from ai_matchmaker import get_best_matches
-
+import os
 app = Flask(__name__)
 app.secret_key = "super_secret_hackathon_key" 
 
@@ -12,10 +12,11 @@ app.secret_key = "super_secret_hackathon_key"
 # 🔌 MYSQL CONNECTION
 # ==========================================
 db = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    password="admin123",
-    database="login1" 
+    host=os.getenv("volunconnect-db-arkadyutidutta2007-a261.a.aivencloud.com", "localhost"),
+    port=os.getenv("11546", 3306),  # 🌟 Ye line nayi add karni hai
+    user=os.getenv("avnadmin", "root"),
+    password=os.getenv("AVNS_dagRXd7YDtBCljYE1Dy", "admin123"),
+    database=os.getenv("defaultdb", "login1")
 )
 
 def is_valid_email(email):
