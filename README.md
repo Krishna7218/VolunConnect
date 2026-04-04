@@ -1,2 +1,2 @@
 # VolunConnect
-It's a Hackathon Project
+It's a Hackathon Project by Algo Avengers
